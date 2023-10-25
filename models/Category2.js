@@ -15,7 +15,7 @@ const Category = sequelize.define('Category2', {
   },
 });
 
-// Define the association to Product (Category has many Products)
+// Defines the association to Product 
 Category.hasMany(Product, {
   foreignKey: 'category_id',
 });
