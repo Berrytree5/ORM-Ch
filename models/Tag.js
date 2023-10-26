@@ -26,7 +26,7 @@ Tag.init(
   }
 );
 
-// Defines the association to Product through ProductTag 
+// Defines the association 
 Tag.belongsToMany(Product, {
   through: 'ProductTag',
   foreignKey: 'tag_id',

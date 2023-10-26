@@ -1,7 +1,8 @@
-const { Model, DataTypes } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/connection');
-const Category = require('./Category2'); // Imports the Category model
+const Category2 = require('./Category2'); // Import the Category2 model
 
+// Define the Product model
 class Product extends Model {}
 
 Product.init(
@@ -17,7 +18,7 @@ Product.init(
       allowNull: false,
     },
     price: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10, 2), 
       allowNull: false,
       validate: {
         isDecimal: true,
@@ -34,7 +35,7 @@ Product.init(
     category_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Category',
+        model: Category2, // Reference the Category2 model
         key: 'id',
       },
     },
@@ -48,8 +49,8 @@ Product.init(
   }
 );
 
-// Defines the association to Category 
-Product.belongsTo(Category, {
+// Define the association to Category2
+Product.belongsTo(Category2, {
   foreignKey: 'category_id',
 });
 

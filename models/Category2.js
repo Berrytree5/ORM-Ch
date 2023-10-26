@@ -1,10 +1,7 @@
-const { Model, DataTypes } = require('sequelize'); // Imports model
-const sequelize = require('../config/connection'); // Imports sequelize
-const Product = require('./Product'); // Imports the Product model
-
+const { DataTypes, Model } = require('sequelize');
+const sequelize = require('../config/connection');
+// Define the Category2 model
 class Category2 extends Model {}
- 
-
 
 Category2.init(
   {
@@ -27,10 +24,5 @@ Category2.init(
     modelName: 'Category2',
   }
 );
-
-// Defines the association to Product
-Category2.hasMany(Product, {
-  foreignKey: 'category_id',
-});
 
 module.exports = Category2;
