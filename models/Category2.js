@@ -1,23 +1,36 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../config/connection'); // Import your Sequelize instance
-const Product = require('./Product'); // Import the Product model
+const { Model, DataTypes } = require('sequelize'); // Imports model
+const sequelize = require('../config/connection'); // Imports sequelize
+const Product = require('./Product'); // Imports the Product model
 
-const Category = sequelize.define('Category2', {
-  id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  category_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-});
+class Category2 extends Model {}
+ 
 
-// Defines the association 
-Category.hasMany(Product, {
+
+Category2.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    category_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'Category2',
+  }
+);
+
+// Defines the association to Product
+Category2.hasMany(Product, {
   foreignKey: 'category_id',
 });
 
-module.exports = Category;
+module.exports = Category2;
