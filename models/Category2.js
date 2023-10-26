@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../db'); // Import your Sequelize instance
+const sequelize = require('../config/connection'); // Import your Sequelize instance
 const Product = require('./Product'); // Import the Product model
 
 const Category = sequelize.define('Category2', {
@@ -15,7 +15,7 @@ const Category = sequelize.define('Category2', {
   },
 });
 
-// Defines the association to Product 
+// Defines the association 
 Category.hasMany(Product, {
   foreignKey: 'category_id',
 });
