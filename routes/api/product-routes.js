@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 
-// GET all products with associated Category and Tag data
+
 router.get('/', async (req, res) => {
   try {
     const products = await Product.findAll({
@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET a single product by ID with associated Category and Tag data
+
 router.get('/:id', async (req, res) => {
   try {
     const product = await Product.findByPk(req.params.id, {
@@ -64,7 +64,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Update a product by ID
+// Update Product ID
 router.put('/:id', async (req, res) => {
   try {
     await Product.update(req.body, {
