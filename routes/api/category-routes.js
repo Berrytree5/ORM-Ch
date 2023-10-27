@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
     });
 
     if (!category) {
-      return res.status(404).json({ message: 'Category not found' });
+      return res.status(404).json({ message: 'Category not in department' });
     }
 
     res.status(200).json(category);
@@ -52,7 +52,7 @@ router.put('/:id', async (req, res) => {
     );
 
     if (updatedRows === 0) {
-      return res.status(404).json({ message: 'Category not found' });
+      return res.status(404).json({ message: 'Category not in department' });
     }
 
     res.status(200).json({ message: 'Category updated successfully' });
@@ -68,7 +68,7 @@ router.delete('/:id', async (req, res) => {
     const deletedCategory = await Category.findByPk(req.params.id);
 
     if (!deletedCategory) {
-      return res.status(404).json({ message: 'Category not found' });
+      return res.status(404).json({ message: 'Category not in department' });
     }
 
     await Product.destroy({ where: { category_id: req.params.id } });
