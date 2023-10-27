@@ -44,7 +44,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Create a new product
+// Creates a product
 router.post('/', async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -101,13 +101,13 @@ router.delete('/:id', async (req, res) => {
     const deletedProduct = await Product.destroy({ where: { id: req.params.id } });
 
     if (deletedProduct === 0) {
-      res.status(404).json({ message: 'Product not found' });
+      res.status(404).json({ message: 'Product not in stock' });
     } else {
-      res.status(200).json({ message: 'Product deleted successfully' });
+      res.status(200).json({ message: 'Product deleted' });
     }
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
