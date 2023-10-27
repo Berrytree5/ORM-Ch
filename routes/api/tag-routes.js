@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     });
     res.status(200).json(tags);
   } catch (err) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -31,12 +31,12 @@ router.get('/:id', async (req, res) => {
     });
 
     if (!tag) {
-      res.status(404).json({ message: 'Tag not found' });
+      res.status(404).json({ message: 'Tag not in directory' });
     } else {
       res.status(200).json(tag);
     }
   } catch (err) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Server error' });
   }
 });
 
@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
     const newTag = await Tag.create(req.body);
     res.status(201).json(newTag);
   } catch (err) {
-    res.status(400).json({ error: 'Bad request' });
+    res.status(400).json({ error: 'Error bad request' });
   }
 });
 
@@ -59,12 +59,12 @@ router.put('/:id', async (req, res) => {
     );
 
     if (updatedRows === 0) {
-      res.status(404).json({ message: 'Tag not found' });
+      res.status(404).json({ message: 'Tags not in database' });
     } else {
-      res.status(200).json({ message: 'Tag updated successfully' });
+      res.status(200).json({ message: 'Tags updated successfully' });
     }
   } catch (err) {
-    res.status(400).json({ error: 'Bad request' });
+    res.status(400).json({ error: 'Error bad request' });
   }
 });
 
@@ -74,12 +74,12 @@ router.delete('/:id', async (req, res) => {
     const deletedTag = await Tag.destroy({ where: { id: req.params.id } });
 
     if (!deletedTag) {
-      res.status(404).json({ message: 'Tag not found' });
+      res.status(404).json({ message: 'Tags not in database' });
     } else {
-      res.status(200).json({ message: 'Tag deleted successfully' });
+      res.status(200).json({ message: 'Tags deleted' });
     }
   } catch (err) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: 'Server error' });
   }
 });
 

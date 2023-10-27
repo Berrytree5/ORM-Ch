@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
-// Get all categories 
+// Gets all categories 
 router.get('/', async (req, res) => {
   try {
     const categories = await Category.findAll({
@@ -62,7 +62,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// Delete a category by its `id` value
+// Delete a category 
 router.delete('/:id', async (req, res) => {
   try {
     const deletedCategory = await Category.findByPk(req.params.id);
